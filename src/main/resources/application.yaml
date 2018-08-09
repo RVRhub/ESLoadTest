@@ -3,9 +3,9 @@ server:
   connection-timeout: 1800s
 
 elasticsearch:
-   url: http://elasticsearch.kubetest4.openshift.sdntest.netcracker.com
-   index: swiss-test3
-   type: event4
+   url: #es_url
+   index: #index
+   type: event
    statisticsIndex: stats
 
 elk:
