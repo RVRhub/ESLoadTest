@@ -2,6 +2,8 @@ package com.rvr.swiss.elk.dto;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,11 +11,14 @@ import java.util.*;
 
 import static com.rvr.swiss.elk.dto.LoggingConst.*;
 
-
+@Document(indexName = "test_roman")
 @Data
 public class LogEventDTO {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Id
+    private Long id;
 
     private String eventSubTypeID;
     private String eventTypeID;

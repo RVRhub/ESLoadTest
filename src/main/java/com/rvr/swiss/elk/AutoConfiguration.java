@@ -34,7 +34,6 @@ import java.lang.annotation.*;
         ProjectInfoAutoConfiguration.class,
         JacksonAutoConfiguration.class,
         DispatcherServletAutoConfiguration.class,
-        ElasticsearchAutoConfiguration.class,
         ErrorMvcAutoConfiguration.class,
         HttpEncodingAutoConfiguration.class,
         HttpMessageConvertersAutoConfiguration.class,
@@ -46,7 +45,8 @@ import java.lang.annotation.*;
         WebMvcAutoConfiguration.class,
         WebSocketServletAutoConfiguration.class,
    //     WebMvcMetricsAutoConfiguration.class,
-
+        //ElasticsearchConfiguration.class
+        ElasticsearchAutoConfiguration.class
 
 })
 public @interface AutoConfiguration {

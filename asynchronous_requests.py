@@ -6,6 +6,7 @@ import csv
 
 def get_urls():
     return ["http://127.0.0.1:8080/runner/elk/count/","http://127.0.0.1:7000/runner/elk/count/","http://127.0.0.1:9000/runner/elk/count/","http://127.0.0.1:9090/runner/elk/count/"]
+#    return ["http://127.0.0.1:8080/runner/elk/transport/count/","http://127.0.0.1:7000/runner/elk/transport/count/","http://127.0.0.1:9000/runner/elk/transport/count/","http://127.0.0.1:9090/runner/elk/transport/count/"]
 
 def run_test(testNum, countOfRequests):
     print('========>>> Run test number ', testNum , ', requsts: ', countOfRequests);

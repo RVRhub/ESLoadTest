@@ -6,6 +6,7 @@ import com.rvr.swiss.elk.dto.LogEventDTO;
 import com.rvr.swiss.elk.dto.LogTestDTO;
 import com.rvr.swiss.elk.handlers.ServerResponseErrorHandler;
 import com.rvr.swiss.elk.integration.ElasticsearchClientImpl;
+import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.ObjectToStringHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -37,10 +39,14 @@ public class RestConfiguration {
                 new ObjectToStringHttpMessageConverter(new DefaultFormattingConversionService()),
                 jsonConverter));
 
-        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setReadTimeout(10000);
+        factory.setConnectTimeout(10000);
+
+        //SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         BufferingClientHttpRequestFactory bufferingClientHttpRequestFactory =
-                new BufferingClientHttpRequestFactory(requestFactory);
-        requestFactory.setOutputStreaming(false);
+                new BufferingClientHttpRequestFactory(factory);
+       // requestFactory.setOutputStreaming(false);
         restTemplate.setRequestFactory(bufferingClientHttpRequestFactory);
         restTemplate.setErrorHandler(new ServerResponseErrorHandler(mapper));
         return restTemplate;

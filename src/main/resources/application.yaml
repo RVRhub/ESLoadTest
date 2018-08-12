@@ -14,6 +14,7 @@ elk:
 logging:
   level:
     com.rvr.swiss.elk: INFO
+    org.springframework.data.elasticsearch: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - [%t] - %msg%n"
 
@@ -23,3 +24,7 @@ spring:
     serialization:
       write_dates_as_timestamps: false
     serialization-inclusion: non_null
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 10.101.182.205:32093
