@@ -32,7 +32,7 @@ def run_test(testNum, countOfRequests):
             pass
         execTime = finishTime-startTime;
         averageTimePerRequest = (execTime/totalRequests)/1e6;
-        print( "Everage time per request, msec: ", averageTimePerRequest);
+        print( "Average time per request, msec: ", averageTimePerRequest);
         errorCoef =  (failedRequests*100)/totalRequests;
         print( "Error coefficient, %: ", errorCoef);
         execTimeSec = int(execTime/1e9);
@@ -47,6 +47,7 @@ def main():
     test3 = run_test(3,'250');
     test4 = run_test(4,'1250');
     test5 = run_test(5,'2500');
+ #   test6 = run_test(5,'10000');
     with  open('result.csv', 'w') as csvfile2:
         writer2 = csv.writer(csvfile2, dialect='excel', quotechar='"', delimiter =';', quoting=csv.QUOTE_ALL);
         writer2.writerow(['requests','avgTimePerReq', 'errorCoef', 'execTimeSec']);
@@ -55,5 +56,6 @@ def main():
         writer2.writerow(test3);
         writer2.writerow(test4);
         writer2.writerow(test5);
+    #    writer2.writerow(test6);
 
 main()

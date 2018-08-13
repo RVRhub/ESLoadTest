@@ -39,14 +39,14 @@ public class RestConfiguration {
                 new ObjectToStringHttpMessageConverter(new DefaultFormattingConversionService()),
                 jsonConverter));
 
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setReadTimeout(10000);
-        factory.setConnectTimeout(10000);
+      //  HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+      //  factory.setReadTimeout(10000);
+      //  factory.setConnectTimeout(10000);
 
-        //SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         BufferingClientHttpRequestFactory bufferingClientHttpRequestFactory =
-                new BufferingClientHttpRequestFactory(factory);
-       // requestFactory.setOutputStreaming(false);
+                new BufferingClientHttpRequestFactory(requestFactory);
+        requestFactory.setOutputStreaming(false);
         restTemplate.setRequestFactory(bufferingClientHttpRequestFactory);
         restTemplate.setErrorHandler(new ServerResponseErrorHandler(mapper));
         return restTemplate;
